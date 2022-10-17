@@ -66,6 +66,11 @@
             <input class="input"  type="email" name="email" id="email" placeholder="Correo">
             <textarea  class="input" name="message" id="mensaje" cols="30" rows="10" placeholder="Mensaje"></textarea>
             <input class="input"  type="submit" value="Enviar">
+
+            <!-- propiedades para que no se abra una nueva ventana-->
+            <input type="hidden" name ="_next" value="http://localhost:8000/">
+            <!-- propiedades para que no hacer el captcha-->
+            <input type="hidden" name ="_captcha" value="false">
         </form>
     </div>
     </footer>
