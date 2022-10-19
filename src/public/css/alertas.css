@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.warning{
+    border-radius: .3rem;
+    padding: .10rem;
+    text-align: center;
+    width: 40%;
+    margin: 20px 450px;
+
+}
+
+.advice{
+    background-color: rgb(158,223,233);
+    border: solid 2px cadetblue;
+    color: rgb(62,106,107);
+}
+
+.success{
+    background-color: rgb(124, 230,165);
+    border: solid 2px rgb(31,83,44);
+    color: rgb(31,83,44);
+}
+
+.danger{
+    background-color: rgb(230,141,163);
+    border: solid 2px rgb(189, 78,106);
+    color: black;
+}
+
+.be-careful{
+    background-color: rgb(246,230,47);
+    border: solid 2px rgb(118,131, 46);
+    color: rgb(118,131, 46);
+}
+
+.warning i{
+    font-size: 3rem;
+}
+
+button{
+    min-width: 4rem;
+}

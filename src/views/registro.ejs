@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Avanti</title>
+  <link rel="stylesheet" href="css/registro.css">
+  <link rel="stylesheet" href="css/alertas.css">
+</head>
+
+<body>
+  
+    <%- include("componentes/header", {userName: " "})%>
+
+    <% if(alert) { %>
+      <div class="warning danger">
+        <i class="fa fa-ambulance"></i>
+        <%= alertMessage %>
+        
+    </div>
+    <% } %>
+
+  <div class="formaregistro">
+    <form action="/registro" method="POST">
+      <section class="form-register">
+        <h4>Crea tu cuenta</h4>
+        <input class="controls" type="text" name="nombre" id="nombre" th:field="*{nombre}" placeholder="Ingrese su Usuario" required>
+        <input class="controls" type="email" name="correo" id="correo" th:field="*{email}" placeholder="Ingrese su Correo" required>
+        <input class="controls" type="password" name="contraseña" id="contraseña" minlength="10" maxlength="100" th:field="*{contraseña}" placeholder="Ingrese su Contraseña" required>
+
+          <input class="botons" type="submit" value="Registrar">
+
+      </section>
+    </form>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
