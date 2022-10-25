@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/src/views')
-app.use(express.static(__dirname + '/src/public/'));
+app.use(express.static(__dirname + '/src/public/'))
 
 app.set('port', process.env.PORT || 4000);
 
@@ -15,8 +15,11 @@ dotenv.config({path: './src/env/.env'})
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 
-//importar el router
-app.use('/', require('./src/routes/router'))
+//importar las rutas
+app.use('/', require('./src/routes/lugar'))
+app.use('/', require('./src/routes/usuario'))
+app.use('/', require('./src/routes/index'))
+
 
 //limpiar cache
 app.use(function(req, res, next) {

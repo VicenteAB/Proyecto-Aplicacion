@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/mapa.css">
+  <title>Avanti</title>
+
+  <link rel="stylesheet" href="css/mapa.css">
+</head>
+
+<body>
+
+  <%- include("componentes/logueado")%>
+     
+      <div class="mapa">
+        <center>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49790.152584727904!2d-72.60692717699939!3d-38.7434117467438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9614d3cec21a2223%3A0xc2fa8887ff008408!2sTemuco%2C%20Araucan%C3%ADa!5e0!3m2!1ses!2scl!4v1663560213293!5m2!1ses!2scl"
+            width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </center>
+      </div>
+      
+      <tbody>
+      <% resultado.forEach ((lugar) => { %>
+      <section class="galeria">
+        <div class="contenedor">
+          <article class="galeria-cont">
+            <a href="/lugar/comentarios/<%= lugar.id_lugar %>"><img src="imagenes/<%= lugar.img_lugar %>" alt="" style="border:3px solid green;
+                  border-radius:22px;"></a>
+          </article>
+        </div>
+      </section>
+      <% }) %>
+    </tbody>
+
+</body>
+
+</html>
