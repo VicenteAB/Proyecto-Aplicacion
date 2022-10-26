@@ -1,7 +1,5 @@
 const bcryptjs = require('bcryptjs')
 const conexion = require('../database/db')
-const { promisify } = require('util')
-const nodemailer = require('nodemailer')
 
 //registro de usuario
 exports.registro = async (req, res) => {
@@ -18,15 +16,16 @@ exports.registro = async (req, res) => {
             nombre_usuario: nombre, email_usuario: email, contraseña_usuario: passHash,
             img_usuario: img
         }, (error, resultado) => {
-            manejoError(error, resultado)
+            emailUnico(error, resultado)
         })
 
     } catch (error) {
         console.error(error)
     }
 
-    //funcion que permite manejar errores al repetir un email ya existente en el registro
-    function manejoError(error, resultado){ 
+    //funcion que impide que se ingrese un email ya registrado en la base de datos
+    //caso contrario redirige al login para iniciar sesion
+    function emailUnico(error, resultado){ 
         if (error) {
             console.error(error)
             res.render('registro', {
@@ -38,5 +37,3 @@ exports.registro = async (req, res) => {
         }    
     }
 }
-
-

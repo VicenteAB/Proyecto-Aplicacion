@@ -60,9 +60,9 @@ exports.estaAutenticado = async (req, res, next)=>{
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
             conexion.query('SELECT * FROM usuario WHERE id_usuario = ?', [decodificada.id_usuario], (error, resultado)=>{
                 if(!resultado){return next()}
-
                 row = resultado[0]
                 return next()
+                
             })
         } catch (error) {
             console.log(error)
@@ -78,5 +78,3 @@ exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
     return res.redirect('/login')
 }
-
-

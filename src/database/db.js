@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql')
 
 //conexion con la base de datos
 const conexion = mysql.createConnection({
@@ -6,16 +6,16 @@ const conexion = mysql.createConnection({
     user : process.env.DB_USER,
     pass : process.env.DB_PASS,
     database : process.env.DB_DATABASE,
-});
+})
 
-//manejo de errores al conectar con la base de datos
+//mensaje al conectar la base de datos
 conexion.connect((error) => {
     if(error){
-        console.error('Hay un error en la conexión: ' + error);
+        console.error('Hay un error en la conexión: ' + error)
         return;
     }else{
-        console.log('Se ha conectado exitosamente a la BD');
+        console.log('Se ha conectado exitosamente a la BD')
     }
-});
+})
 
-module.exports = conexion;
+module.exports = conexion
