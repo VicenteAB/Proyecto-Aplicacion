@@ -9,7 +9,7 @@ exports.registro = async (req, res) => {
         const email = req.body.correo
         const contraseña = req.body.contraseña
         let passHash = await bcryptjs.hash(contraseña, 10)
-        //se le asigna al usuario una imagen por defecto
+        //se le asigna al usuario una i{magen por defecto
         const img = "usericon.png"
 
         conexion.query('INSERT INTO usuario SET ?', {
@@ -25,12 +25,12 @@ exports.registro = async (req, res) => {
 
     //funcion que impide que se ingrese un email ya registrado en la base de datos
     //caso contrario redirige al login para iniciar sesion
-    function emailUnico(error, resultado){ 
+    function emailUnico(error){ 
         if (error) {
             console.error(error)
             res.render('registro', {
-                alert: true,
-                alertMessage: "Este email ya esta en uso!"
+                alerta: true,
+                mensaje: "Este email ya esta en uso!"
             })
         } else {
             res.redirect('/login')

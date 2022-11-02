@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const conexion = require('../database/db')
 
 //controladores necesarios para los enrutamientos
 const authController = require('../controller/authController')

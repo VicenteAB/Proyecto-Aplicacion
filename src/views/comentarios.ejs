@@ -21,11 +21,11 @@
         <div class="caja">
             <br>
             <br>
-            <% resultado.forEach ((lugar)=> { %>
-                <img src='imagenes/<%= lugar.img_lugar %>' class='imgRedonda' />
+            <% for(var i=0; i < resultado.length; i++) { %>
+                <img src='imagenes/<%= resultado[i].img_lugar %>' class='imgRedonda' />
                 </br>
                 </br>
-                <h3>&nbsp; <%= lugar.nombre_lugar %>
+                <h3>&nbsp; <%= resultado[i].nombre_lugar %>
                 </h3>
 
                 <div class="estrellas justify-content-center">
@@ -36,10 +36,10 @@
                     <span class="fa fa-star"></span>
                 </div>
                 <h5 style="margin: 10px 40px">
-                    <%= lugar.direccion_lugar %>
+                    <%= resultado[i].direccion_lugar %>
                 </h5>
-                <br> <br> <br> <br> <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <%})%>
+                <br> <br> <br> <br> <br><br><br><br><br><br><br><br>
+                <%break}%>
 
                     <div class="container mt-5" style="margin-left: 15%; ">
 
@@ -50,55 +50,58 @@
                                 <div class="headings d-flex justify-content-between align-items-center mb-3">
                                     <h5>Comentarios(4)</h5>
                                 </div>
-                                <% resultado.forEach ((lugar)=> { %>
-                                    <br>
-                                    <div class="card p-3">
 
-                                        <div class="d-flex justify-content-between align-items-center">
+                                <% for(var i= 0; i < resultado.length; i++) { %>
+                                    <% if (i==3) break %>
+                                        <br>
+                                        <div class="card p-3">
 
-                                            <div class="user d-flex flex-row align-items-center">
+                                            <div class="d-flex justify-content-between align-items-center">
 
-                                                <img src="imagenes/<%= lugar.img_usuario %>" width="30"
-                                                    class="user-img rounded-circle mr-2">
-                                                <span><small class="font-weight-bold text-primary">
-                                                        <%= lugar.nombre_usuario %>
-                                                    </small>
-                                                    <small class="font-weight-bold">
-                                                        <%= lugar.contenido%>
-                                                    </small></span>
+                                                <div class="user d-flex flex-row align-items-center">
+
+                                                    <img src="imagenes/<%= resultado[i].img_usuario %>" width="30"
+                                                        class="user-img rounded-circle mr-2">
+                                                    <span><small class="font-weight-bold text-primary">
+                                                            <%= resultado[i].nombre_usuario %>
+                                                        </small>
+                                                        <small class="font-weight-bold">
+                                                            <%= resultado[i].contenido%>
+                                                        </small></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <div class="reply px-4">
+
+                                                </div>
+
+                                                <div class="icons align-items-center">
+
+                                                    <i class="fa fa-star text-warning">
+                                                        <%= resultado[i].estrellas %>
+                                                    </i>
+
+                                                </div>
+
                                             </div>
                                         </div>
+                                        <% } %>
 
-                                        <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                            <div class="reply px-4">
-
-                                            </div>
-
-                                            <div class="icons align-items-center">
-
-                                                <i class="fa fa-star text-warning">
-                                                    <%= lugar.estrellas %>
-                                                </i>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <% }) %>
-
-                                        <% resultado.forEach ((lugar)=> { %>
-                                            <div class="boton1">
-                                                <a href="/lugar/nuevo_comentario/<%= lugar.id_lugar %>">
-                                                    <button type="button" class="btn btn-primary">Añadir
-                                                        Comentario</button>
-                                                </a>
-                                            </div>
-                                            <div class="boton2">
-                                                <a href="/lugar/mas_comentarios/<%= lugar.id_lugar %>">
-                                                    <button type="button" class="btn btn-success">Más opiniones</button>
-                                                </a>
-                                            </div>
-                                            <% }) %>
+                                            <% resultado.forEach ((lugar)=> { %>
+                                                <div class="boton1">
+                                                    <a href="/lugar/nuevo_comentario/<%= lugar.id_lugar %>">
+                                                        <button type="button" class="btn btn-primary">Añadir
+                                                            Comentario</button>
+                                                    </a>
+                                                </div>
+                                                <div class="boton2">
+                                                    <a href="/lugar/mas_comentarios/<%= lugar.id_lugar %>">
+                                                        <button type="button" class="btn btn-success">Más
+                                                            opiniones</button>
+                                                    </a>
+                                                </div>
+                                                <% }) %>
 
                             </div>
                         </div>

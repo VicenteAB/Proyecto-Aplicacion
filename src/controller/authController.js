@@ -14,8 +14,8 @@ exports.login = async (req, res)=>{
 
         if(!email || !contraseña){
             res.render('login',{
-                alert:true,
-                alertMessage: "ingrese email o contraseña",
+                alerta:true,
+                mensaje: "ingrese email o contraseña",
                 timer: false,
                 ruta: 'login'
             })
@@ -23,8 +23,8 @@ exports.login = async (req, res)=>{
             conexion.query('SELECT * FROM usuario WHERE email_usuario = ?', [email], async function (error, resultado) {
                     if (resultado.length == 0 || !(await bcryptjs.compare(contraseña, resultado[0].contraseña_usuario))) {
                         res.render('login', {
-                            alert: true,
-                            alertMessage: "Email o contraseña incorrectos",
+                            alerta: true,
+                            mensaje: "Email o contraseña incorrectos",
                             timer: false,
                             ruta: 'login'
                         })
@@ -41,8 +41,8 @@ exports.login = async (req, res)=>{
 
                         res.cookie('jwt', token, cookies)
                         res.render('login', {
-                            alert: true,
-                            alertMessage: "Exito al iniciar sesion",
+                            alerta: true,
+                            mensaje: "Exito al iniciar sesion",
                             ruta: res.redirect('/sesion_iniciada')
                         })
                     }
@@ -53,13 +53,14 @@ exports.login = async (req, res)=>{
     }
 }
 
-//Se encarga de verificar/autenticar, que el usuario haya iniciado sesion
+//Se encarga de verificar/autenticar, la sesion de usuario
 exports.estaAutenticado = async (req, res, next)=>{
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
             conexion.query('SELECT * FROM usuario WHERE id_usuario = ?', [decodificada.id_usuario], (error, resultado)=>{
                 if(!resultado){return next()}
+
                 row = resultado[0]
                 return next()
                 

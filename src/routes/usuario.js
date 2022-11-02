@@ -7,12 +7,12 @@ const authController = require('../controller/authController')
 
 //pagina de login
 router.get('/login', (req, res) => {
-    res.render('login', {alert:false}) 
+    res.render('login', {alerta:false}) 
 })
 
 //pagina para el registro de usuarios
 router.get('/registro', (req, res) => {
-    res.render('registro', {alert:false}) 
+    res.render('registro', {alerta:false}) 
 })
 
 //registra nuevos usuarios a la pagina

@@ -26,7 +26,8 @@ router.get('/lugar/mas_comentarios/:id', authController.estaAutenticado, (req,re
 
 //pagina para añadir nuevos comentarios
 router.get('/lugar/nuevo_comentario/:id', authController.estaAutenticado, (req,res)=>{    
-    conexion.query('SELECT * FROM lugar', (error, resultado)=>{
+    const id_lugar = req.params.id; 
+    conexion.query('SELECT * FROM lugar WHERE id_lugar=?', [id_lugar] , (error, resultado)=>{
         if(error){
             throw error
         } else {                                                   

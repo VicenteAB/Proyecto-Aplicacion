@@ -9,12 +9,12 @@
 
 <body>
   
-    <%- include("componentes/header", {userName: " "})%>
+    <%- include("componentes/header")%>
 
-    <% if(alert) { %>
+    <% if(alerta) { %>
       <div class="warning danger">
         <i class="fa fa-ambulance"></i>
-        <%= alertMessage %>
+        <%= mensaje %>
         
     </div>
     <% } %>

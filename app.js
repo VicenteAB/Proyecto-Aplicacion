@@ -12,6 +12,8 @@ app.set('port', process.env.PORT || 4000)
 
 dotenv.config({path: './src/env/.env'})
 
+app.use(express.json())
+
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 
