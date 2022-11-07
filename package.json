@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app",
-    "start": "node app"
+    "start": "node app",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +28,8 @@
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "sonarqube-scanner": "^2.8.2"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.0"
   }
 }

@@ -6,7 +6,13 @@ const { Router } = require('express')
 const router = Router()
 
 
-//recibe el email y contraseña para poder realizar el inicio de sesion
+/**
+ * @method
+ * @desc Metodo que recibe los datos ingresados para realizar el login a la pagina,
+ * en caso de que el usuario no digite ningún valor en los campos, este sera redirigido al
+ * login, lo mismo ocurrira en caso de que digite mal los datos, al iniciar sesión con exito
+ * se generara un token de sesión al usuario.
+ */
 exports.login = async (req, res)=>{
     try {
         const email = req.body.email
@@ -29,8 +35,9 @@ exports.login = async (req, res)=>{
                             ruta: 'login'
                         })
                     } else {
-                        const id = resultado[0].id
-                        const token = jwt.sign({ id_usuario: id }, process.env.JWT_SECRETO, {
+                        const id = resultado[0].id_usuario
+                        const usuario = {id_usuario : id}
+                        const token = jwt.sign( usuario , process.env.JWT_SECRETO, {
                             expiresIn: process.env.JWT_EXPIRATION_TIME
                         })
 
@@ -43,7 +50,7 @@ exports.login = async (req, res)=>{
                         res.render('login', {
                             alerta: true,
                             mensaje: "Exito al iniciar sesion",
-                            ruta: res.redirect('/sesion_iniciada')
+                            ruta: res.render('indexl')
                         })
                     }
                 })
@@ -53,7 +60,12 @@ exports.login = async (req, res)=>{
     }
 }
 
-//Se encarga de verificar/autenticar, la sesion de usuario
+/**
+ * @method
+ * @desc Metodo que verifica si el usuario esta autenticado en la pagina
+ * a traves de su token generado al iniciar sesión, en caso de que el usuario
+ * no este autenticado este sera redirigido al login 
+ */
 exports.estaAutenticado = async (req, res, next)=>{
     if (req.cookies.jwt) {
         try {
@@ -63,6 +75,7 @@ exports.estaAutenticado = async (req, res, next)=>{
 
                 row = resultado[0]
                 return next()
+                
                 
             })
         } catch (error) {
@@ -74,7 +87,11 @@ exports.estaAutenticado = async (req, res, next)=>{
     }
 }
 
-//limpia los cookies al cerrar sesión
+/**
+ * @method
+ * @desc Metodo que se encarga de limpiar los cookies de sesión
+ * para poder efectuar el cierre de sesión del usuario
+ */
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')   
     return res.redirect('/login')

@@ -15,16 +15,16 @@
 <body>
 
   <%- include("componentes/logueado")%>
-     
+  <% for (var i = 0; i < resultado.length; i++) { %>
       <div class="mapa">
         <center>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49790.152584727904!2d-72.60692717699939!3d-38.7434117467438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9614d3cec21a2223%3A0xc2fa8887ff008408!2sTemuco%2C%20Araucan%C3%ADa!5e0!3m2!1ses!2scl!4v1663560213293!5m2!1ses!2scl"
+            src="<%= resultado[i].url_mapa%>"
             width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </center>
       </div>
-      
+      <% break} %>
       <tbody>
       <% resultado.forEach ((lugar) => { %>
       <section class="galeria">

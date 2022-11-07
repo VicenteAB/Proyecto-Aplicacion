@@ -1,27 +1,57 @@
 const express = require('express')
 const router = express.Router()
 
-//controladores necesarios para los enrutamientos
+/**
+ * Instanciación del controlador necesario para los respectivos enrutamientos
+ */
 const usuarioController = require('../controller/usuarioController')
+
+/**
+ * Instanciación del controlador necesario para los respectivos enrutamientos
+ */
 const authController = require('../controller/authController')
 
-//pagina de login
+/**
+ *  @name login
+ *  @path {GET} /login
+ *  Ruta para realizar el login
+ *  Metodo que renderiza el login
+ *  return Vista de login
+ */
 router.get('/login', (req, res) => {
-    res.render('login', {alerta:false}) 
+   return res.render('login', {alerta:false}) 
 })
 
-//pagina para el registro de usuarios
+/**
+ *  @name registro
+ *  @path {GET} /registro
+ *  Ruta para realizar el registro de usuarios
+ *  Metodo que renderiza el registro
+ *  return Vista de registro
+ */
 router.get('/registro', (req, res) => {
-    res.render('registro', {alerta:false}) 
+   return res.render('registro', {alerta:false}) 
 })
 
-//registra nuevos usuarios a la pagina
+/**
+ *  @name registro
+ *  @path {POST} /registro
+ *  Ruta que utiliza el metodo post que crea al nuevo usuario
+ */
 router.post('/registro', usuarioController.registro)
 
-//inicio de sesión del usuario
+/**
+ *  @name login
+ *  @path {POST} /login
+ *  Ruta que utiliza el metodo post que loguea al usuario
+ */
 router.post('/login', authController.login)
 
-//cierre de sesión del usuario
+/**
+ *  @name logout
+ *  @path {GET} /logout
+ *  Ruta que utiliza el metodo post que cierra la sesión del usuario
+ */
 router.get('/logout', authController.logout)
 
 

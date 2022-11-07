@@ -1,18 +1,31 @@
 const express = require('express')
 const router = express.Router()
-const conexion = require('../database/db')
 
-//controladores necesarios para los enrutamientos
+/**
+ * Instanciación del controlador necesario para los respectivos enrutamientos
+ */
 const authController = require('../controller/authController')
 
-//pagina principal
+/**
+ * @name index
+ * @path {GET} /
+ *  Ruta principal de la página 
+ *  Metodo que renderiza el index
+ *  return vista index
+ */
 router.get('/', (req, res) => {
-    res.render('index')    
+    return res.render('index')    
 })
 
-//pagina al iniciar sesion
+/**
+ * @name index
+ * @path {GET} /sesion_iniciada
+ *  Ruta principal de la página al iniciar sesión
+ *  Metodo que renderiza el indexl
+ *  return vista indexl
+ */
 router.get('/sesion_iniciada', authController.estaAutenticado, (req, res) => {
-    res.render('indexl')
+    return res.render('indexl')
 })
 
 module.exports = router
